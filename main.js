@@ -761,6 +761,65 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const nav = document.querySelector('header nav');
+  
+  if (mobileMenuToggle && nav) {
+    mobileMenuToggle.addEventListener('click', function() {
+      mobileMenuToggle.classList.toggle('active');
+      nav.classList.toggle('active');
+      document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close menu when clicking on a nav link
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+          mobileMenuToggle.classList.remove('active');
+          nav.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768 && nav.classList.contains('active')) {
+        if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+          mobileMenuToggle.classList.remove('active');
+          nav.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+    
+    // Handle submenu toggles on mobile
+    const submenuItems = document.querySelectorAll('header nav .nav-item.has-submenu');
+    submenuItems.forEach(item => {
+      const link = item.querySelector('> a');
+      if (link) {
+        link.addEventListener('click', function(e) {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            item.classList.toggle('active');
+          }
+        });
+      }
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        mobileMenuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+});
+
 // Clients Auto-Scroll Animation
 document.addEventListener('DOMContentLoaded', function() {
   const clientRows = document.querySelectorAll('.client-row');
