@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mega Eternity Dental Laboratory - Three-generation legacy combining traditional expertise with cutting-edge technology for over 40 years">
     <title>Mega Eternity Dental Laboratory | Premium Dental Restorations</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js" defer></script>
 </head>
 <body>
 <header>
     <div class="logo">
-        <img src="images/Mega Eternity Dental logo.png" alt="Mega Eternity Dental Laboratory">
+        <img src="images/Mega Eternity Dental logo.png" alt="Mega Eternity Dental Laboratory" fetchpriority="high">
     </div>
     <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
         <span></span>
@@ -44,7 +46,7 @@
   <div class="outer">
     <div class="inner">
       <div class="bg one">
-        <video class="bg-video" autoplay muted loop playsinline>
+        <video class="bg-video" autoplay muted loop playsinline preload="metadata">
           <source src="images/Stock/grok-video-781ba4f6-b59f-4f42-a617-73197176a487-2.mp4" type="video/mp4">
         </video>
         <div class="content-wrapper">
@@ -87,7 +89,7 @@
               <p>We specialize in crowns, bridges, implants, and orthodontic devices using digital scanners, 3D printing, and AI-driven design for precise, high-quality restorations.</p>
              </div>
             <div class="about-images">
-              <img src="images/Event/opening/MEITU_20250429_132009809.jpg" alt="Mega Eternity Opening Event">
+              <img src="images/Event/opening/MEITU_20250429_132009809.jpg" alt="Mega Eternity Opening Event" loading="lazy">
             </div>
           </div>
         </div>
@@ -105,25 +107,25 @@
           <div class="products-grid">
             <div class="product-card" data-product="crown-bridge">
               <div class="product-image">
-                <img src="images/Product/crown & bridge/full zircon/full zir crown1.JPG" alt="Crowns & Bridges">
+                <img src="images/Product/crown & bridge/full zircon/full zir crown1.JPG" alt="Crowns & Bridges" loading="lazy">
               </div>
               <h3>Crowns & Bridges</h3>
             </div>
             <div class="product-card" data-product="implant">
               <div class="product-image">
-                <img src="images/Product/implant/full zir implant1.JPG" alt="Dental Implants">
+                <img src="images/Product/implant/full zir implant1.JPG" alt="Dental Implants" loading="lazy">
               </div>
               <h3>Implants</h3>
             </div>
             <div class="product-card" data-product="denture">
               <div class="product-image">
-                <img src="images/Product/denture/full denture/BPS Denture.JPG" alt="Dentures">
+                <img src="images/Product/denture/full denture/BPS Denture.JPG" alt="Dentures" loading="lazy">
               </div>
               <h3>Dentures</h3>
             </div>
             <div class="product-card" data-product="orthodontic">
               <div class="product-image">
-                <img src="images/Product/crown & bridge/veneers/veneers1.JPG" alt="Orthodontics & Esthetics">
+                <img src="images/Product/crown & bridge/veneers/veneers1.JPG" alt="Orthodontics & Esthetics" loading="lazy">
               </div>
               <h3>Orthodontics & Esthetics</h3>
             </div>
@@ -147,16 +149,16 @@
             <div class="slider-container">
               <div class="slider-wrapper">
                 <div class="slider-track">
-                  <div class="slide"><img src="images/China/圖片_20250910180438_18_26.jpg" alt="China Workshop Facility"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180442_19_26.jpg" alt="Workshop Equipment"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180447_20_26.jpg" alt="China Workshop Facility"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180451_21_26.jpg" alt="Technicians at Work"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180457_22_26.jpg" alt="Advanced Equipment"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180502_23_26.jpg" alt="Workshop Technology"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180505_24_26.jpg" alt="Production Facility"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180509_25_26.jpg" alt="Equipment Setup"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180513_26_26.jpg" alt="Workshop Interior"></div>
-                  <div class="slide"><img src="images/China/圖片_20250910180519_27_26.jpg" alt="China Lab"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180438_18_26.jpg" alt="China Workshop Facility" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180442_19_26.jpg" alt="Workshop Equipment" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180447_20_26.jpg" alt="China Workshop Facility" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180451_21_26.jpg" alt="Technicians at Work" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180457_22_26.jpg" alt="Advanced Equipment" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180502_23_26.jpg" alt="Workshop Technology" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180505_24_26.jpg" alt="Production Facility" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180509_25_26.jpg" alt="Equipment Setup" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180513_26_26.jpg" alt="Workshop Interior" loading="lazy"></div>
+                  <div class="slide"><img src="images/China/圖片_20250910180519_27_26.jpg" alt="China Lab" loading="lazy"></div>
                 </div>
               </div>
               <button class="slider-nav prev" aria-label="Previous">‹</button>
@@ -183,12 +185,12 @@
             <div class="slider-container">
               <div class="slider-wrapper">
                 <div class="slider-track">
-                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_112709.jpg" alt="Hong Kong Office"></div>
-                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_112728.jpg" alt="Hong Kong Office"></div>
-                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_112804.jpg" alt="Hong Kong Team"></div>
-                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_113005.jpg" alt="Quality Control"></div>
-                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_114339.jpg" alt="Hong Kong Facility"></div>
-                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_114409.jpg" alt="Team Meeting"></div>
+                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_112709.jpg" alt="Hong Kong Office" loading="lazy"></div>
+                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_112728.jpg" alt="Hong Kong Office" loading="lazy"></div>
+                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_112804.jpg" alt="Hong Kong Team" loading="lazy"></div>
+                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_113005.jpg" alt="Quality Control" loading="lazy"></div>
+                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_114339.jpg" alt="Hong Kong Facility" loading="lazy"></div>
+                  <div class="slide"><img src="images/Event/hong kong_/IMG_20250414_114409.jpg" alt="Team Meeting" loading="lazy"></div>
                 </div>
               </div>
               <button class="slider-nav prev" aria-label="Previous">‹</button>
@@ -212,21 +214,21 @@
             <div class="tech-features">
               <div class="tech-item">
                 <div class="tech-image">
-                  <img src="images/China/圖片_20250910180502_23_26.jpg" alt="Digital Scanner Technology">
+                  <img src="images/China/圖片_20250910180502_23_26.jpg" alt="Digital Scanner Technology" loading="lazy">
                 </div>
               <h3>Digital Oral Scanners</h3>
               <p>Precision digital impressions</p>
               </div>
               <div class="tech-item">
                 <div class="tech-image">
-                  <img src="images/China/圖片_20250910180543_31_26.jpg" alt="3D Printing Equipment">
+                  <img src="images/China/圖片_20250910180543_31_26.jpg" alt="3D Printing Equipment" loading="lazy">
                 </div>
               <h3>3D Printing</h3>
               <p>Custom restoration manufacturing</p>
               </div>
               <div class="tech-item">
                 <div class="tech-image">
-                  <img src="images/China/圖片_20250910180548_32_26.jpg" alt="AI Design Systems">
+                  <img src="images/China/圖片_20250910180548_32_26.jpg" alt="AI Design Systems" loading="lazy">
                 </div>
               <h3>AI-Driven Design</h3>
               <p>Optimized restoration design</p>
@@ -248,60 +250,60 @@
           <div class="clients-grid">
             <div class="client-row" data-direction="left">
               <div class="client-track">
-                <div class="client-item"><img src="images/client/1 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/8.jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/2 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/3 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/4 (1).jpg" alt="Client Logo"></div>
+                <div class="client-item"><img src="images/client/1 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/8.jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/2 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/3 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/4 (1).jpg" alt="Client Logo" loading="lazy"></div>
                 <!-- Duplicate for seamless loop -->
-                <div class="client-item"><img src="images/client/1 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/1 (2).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/2 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/3 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/4 (1).jpg" alt="Client Logo"></div>
+                <div class="client-item"><img src="images/client/1 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/1 (2).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/2 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/3 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/4 (1).jpg" alt="Client Logo" loading="lazy"></div>
               </div>
             </div>
             <div class="client-row" data-direction="right">
               <div class="client-track">
-                <div class="client-item"><img src="images/client/5 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/6 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/7 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/8.jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/3.png" alt="Client Logo"></div>
+                <div class="client-item"><img src="images/client/5 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/6 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/7 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/8.jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/3.png" alt="Client Logo" loading="lazy"></div>
                 <!-- Duplicate for seamless loop -->
-                <div class="client-item"><img src="images/client/5 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/6 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/7 (1).jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/8.jpg" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/3.png" alt="Client Logo"></div>
+                <div class="client-item"><img src="images/client/5 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/6 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/7 (1).jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/8.jpg" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/3.png" alt="Client Logo" loading="lazy"></div>
               </div>
             </div>
             <div class="client-row" data-direction="left">
               <div class="client-track">
-                <div class="client-item"><img src="images/client/5.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/6.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/7.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/8.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/9.png" alt="Client Logo"></div>
+                <div class="client-item"><img src="images/client/5.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/6.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/7.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/8.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/9.png" alt="Client Logo" loading="lazy"></div>
                 <!-- Duplicate for seamless loop -->
-                <div class="client-item"><img src="images/client/5.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/6.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/7.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/8.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/9.png" alt="Client Logo"></div>
+                <div class="client-item"><img src="images/client/5.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/6.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/7.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/8.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/9.png" alt="Client Logo" loading="lazy"></div>
               </div>
             </div>
             <div class="client-row" data-direction="right">
               <div class="client-track">
-                <div class="client-item"><img src="images/client/10.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/11.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/12.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/14.png" alt="Client Logo"></div>
+                <div class="client-item"><img src="images/client/10.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/11.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/12.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/14.png" alt="Client Logo" loading="lazy"></div>
                 <!-- Duplicate for seamless loop -->
-                <div class="client-item"><img src="images/client/10.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/11.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/12.png" alt="Client Logo"></div>
-                <div class="client-item"><img src="images/client/14.png" alt="Client Logo"></div>
+                <div class="client-item"><img src="images/client/10.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/11.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/12.png" alt="Client Logo" loading="lazy"></div>
+                <div class="client-item"><img src="images/client/14.png" alt="Client Logo" loading="lazy"></div>
               </div>
             </div>
           </div>
@@ -320,7 +322,7 @@
           <div class="working-days-content">
             <div class="working-days-category" data-category="Casting Denture">
               <div class="category-image">
-                <img src="images/Product/denture/full denture/BPS Denture.JPG" alt="Casting Denture">
+                <img src="images/Product/denture/full denture/BPS Denture.JPG" alt="Casting Denture" loading="lazy">
                 <div class="category-title-overlay">
                   <h3>Casting Denture</h3>
                 </div>
@@ -328,7 +330,7 @@
             </div>
             <div class="working-days-category" data-category="Fixed Restoration">
               <div class="category-image">
-                <img src="images/Product/crown & bridge/full zircon/full zir bridge1.JPG" alt="Fixed Restoration">
+                <img src="images/Product/crown & bridge/full zircon/full zir bridge1.JPG" alt="Fixed Restoration" loading="lazy">
                 <div class="category-title-overlay">
                   <h3>Fixed Restoration</h3>
                 </div>
@@ -336,7 +338,7 @@
             </div>
             <div class="working-days-category" data-category="Acrylic Denture">
               <div class="category-image">
-                <img src="images/Product/denture/partial  denture/partial denture.JPG" alt="Acrylic Denture">
+                <img src="images/Product/denture/partial  denture/partial denture.JPG" alt="Acrylic Denture" loading="lazy">
                 <div class="category-title-overlay">
                   <h3>Acrylic Denture</h3>
                 </div>
@@ -344,7 +346,7 @@
             </div>
             <div class="working-days-category" data-category="Other">
               <div class="category-image">
-                <img src="images/Product/denture/over denture/hader bar1.JPG" alt="Other Services">
+                <img src="images/Product/denture/over denture/hader bar1.JPG" alt="Other Services" loading="lazy">
                 <div class="category-title-overlay">
                   <h3>Other</h3>
                 </div>
@@ -431,47 +433,47 @@
           <div class="slider-container">
             <div class="slider-wrapper">
               <div class="slider-track">
-                <div class="slide"><img src="images/China/圖片_20250910180438_18_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180442_19_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180447_20_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180451_21_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180457_22_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180502_23_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180505_24_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180509_25_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180513_26_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180519_27_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180525_28_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180531_29_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180538_30_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180543_31_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180548_32_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180554_33_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180559_34_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180603_35_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180608_36_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180609_37_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180610_38_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180615_39_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180617_40_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180619_41_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180622_42_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180626_43_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180629_44_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180632_45_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180634_46_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180638_47_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180642_48_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180645_49_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180648_50_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180650_51_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180653_52_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180656_53_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180658_54_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180701_55_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180704_56_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180707_57_26.jpg" alt="China Factory"></div>
-                <div class="slide"><img src="images/China/圖片_20250910180710_58_26.jpg" alt="China Factory"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180438_18_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180442_19_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180447_20_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180451_21_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180457_22_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180502_23_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180505_24_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180509_25_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180513_26_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180519_27_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180525_28_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180531_29_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180538_30_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180543_31_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180548_32_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180554_33_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180559_34_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180603_35_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180608_36_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180609_37_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180610_38_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180615_39_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180617_40_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180619_41_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180622_42_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180626_43_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180629_44_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180632_45_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180634_46_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180638_47_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180642_48_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180645_49_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180648_50_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180650_51_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180653_52_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180656_53_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180658_54_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180701_55_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180704_56_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180707_57_26.jpg" alt="China Factory" loading="lazy"></div>
+                <div class="slide"><img src="images/China/圖片_20250910180710_58_26.jpg" alt="China Factory" loading="lazy"></div>
               </div>
             </div>
             <button class="slider-nav prev" aria-label="Previous">‹</button>
@@ -541,6 +543,6 @@
   </div>
 </div>
 
-<script src="main.js"></script>
+<script src="main.js" defer></script>
 </body>
 </html>

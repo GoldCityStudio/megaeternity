@@ -12,6 +12,16 @@
   user-select: none;
 }
 
+/* Image optimization */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
 a {
   color: var(--color-surface-white);
   text-decoration: none;
