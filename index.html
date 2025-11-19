@@ -23,14 +23,14 @@
         <div class="nav-item has-submenu">
             <a href="#about">About</a>
             <ul class="submenu">
-                <li><a href="#clients">Our Clients</a></li>
+                <li><a href="#clients">We are using</a></li>
                 <li><a href="#innovation">Innovation</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
-        <a href="#services">Services</a>
-        <a href="#workshops">Workshops</a>
-     
+        <a href="#services">Product</a>
+        <a href="#workshop-china">Workshop in China</a>
+        <a href="#workshop-hongkong">Workshop in Hong Kong</a>
         <a href="#china-factory" class="china-factory-link">China Factory</a>
         <a href="#working-days">Working Days</a>
     </nav>
@@ -101,48 +101,31 @@
     <div class="inner">
       <div class="bg">
         <div class="content-wrapper">
-          <h2 class="section-heading">Our Services</h2>
-          <div class="services-slider">
-            <div class="slider-container">
-              <div class="slider-wrapper">
-                <div class="slider-track">
-                  <div class="slider-slide">
-                    <div class="service-card">
-                      <div class="service-image">
-                        <img src="images/Product/crown & bridge/full zircon/full zir crown1.JPG" alt="Crowns & Bridges">
-                      </div>
-                      <h3>Crowns & Bridges</h3>
-                    </div>
-                  </div>
-                  <div class="slider-slide">
-                    <div class="service-card">
-                      <div class="service-image">
-                        <img src="images/Product/implant/full zir implant1.JPG" alt="Dental Implants">
-                      </div>
-                      <h3>Implants</h3>
-                    </div>
-                  </div>
-                  <div class="slider-slide">
-                    <div class="service-card">
-                      <div class="service-image">
-                        <img src="images/Product/denture/full denture/BPS Denture.JPG" alt="Dentures">
-                      </div>
-                      <h3>Dentures</h3>
-                    </div>
-                  </div>
-                  <div class="slider-slide">
-                    <div class="service-card">
-                      <div class="service-image">
-                        <img src="images/Product/crown & bridge/veneers/veneers1.JPG" alt="Orthodontics & Esthetics">
-                      </div>
-                      <h3>Orthodontics & Esthetics</h3>
-                    </div>
-                  </div>
-                </div>
+          <h2 class="section-heading">Product</h2>
+          <div class="products-grid">
+            <div class="product-card" data-product="crown-bridge">
+              <div class="product-image">
+                <img src="images/Product/crown & bridge/full zircon/full zir crown1.JPG" alt="Crowns & Bridges">
               </div>
-              <button class="slider-btn prev" aria-label="Previous service">‹</button>
-              <button class="slider-btn next" aria-label="Next service">›</button>
-              <div class="slider-dots"></div>
+              <h3>Crowns & Bridges</h3>
+            </div>
+            <div class="product-card" data-product="implant">
+              <div class="product-image">
+                <img src="images/Product/implant/full zir implant1.JPG" alt="Dental Implants">
+              </div>
+              <h3>Implants</h3>
+            </div>
+            <div class="product-card" data-product="denture">
+              <div class="product-image">
+                <img src="images/Product/denture/full denture/BPS Denture.JPG" alt="Dentures">
+              </div>
+              <h3>Dentures</h3>
+            </div>
+            <div class="product-card" data-product="orthodontic">
+              <div class="product-image">
+                <img src="images/Product/crown & bridge/veneers/veneers1.JPG" alt="Orthodontics & Esthetics">
+              </div>
+              <h3>Orthodontics & Esthetics</h3>
             </div>
           </div>
         </div>
@@ -151,7 +134,7 @@
   </div>
 </section>
 
-<section class="fourth">
+<section class="fourth" id="workshop-china">
   <div class="outer">
     <div class="inner">
       <div class="bg">
@@ -187,7 +170,7 @@
   </div>
 </section>
 
-<section class="fifth">
+<section class="fifth" id="workshop-hongkong">
   <div class="outer">
     <div class="inner">
       <div class="bg">
@@ -261,7 +244,7 @@
     <div class="inner">
       <div class="bg">
         <div class="content-wrapper">
-          <h2 class="section-heading">Our Clients</h2>
+          <h2 class="section-heading">We are using</h2>
           <div class="clients-grid">
             <div class="client-row" data-direction="left">
               <div class="client-track">
@@ -402,6 +385,27 @@
               <a href="mailto:sales@megaeternity.com" class="cta-button">Request a Quote</a>
               <a href="tel:+85224017107" class="cta-button secondary">Call Now</a>
             </div>
+            <div class="file-upload-section">
+              <h3 class="upload-section-title">Upload 3D Scan Files (.STL)</h3>
+              <p class="upload-section-description">Upload your dental scan files for processing and quotation</p>
+              <form id="stlUploadForm" class="upload-form">
+                <div class="upload-area" id="uploadArea">
+                  <div class="upload-icon">📁</div>
+                  <p class="upload-text">Drag and drop your .STL files here</p>
+                  <p class="upload-subtext">or</p>
+                  <label for="stlFileInput" class="upload-button-label">
+                    <span>Browse Files</span>
+                    <input type="file" id="stlFileInput" name="stlFiles" accept=".stl" multiple hidden>
+                  </label>
+                  <p class="upload-hint">Accepted format: .STL (Multiple files allowed)</p>
+                </div>
+                <div class="uploaded-files" id="uploadedFiles"></div>
+                <div class="form-actions">
+                  <button type="submit" class="submit-upload-btn" id="submitUploadBtn" disabled>Submit Files</button>
+                  <button type="button" class="clear-upload-btn" id="clearUploadBtn" style="display: none;">Clear All</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -512,6 +516,23 @@
       <div class="modal-description">
         <p>For more information about these services or to place an order, please contact us.</p>
       </div>
+      <div class="modal-actions">
+        <a href="mailto:sales@megaeternity.com" class="modal-button">Request Quote</a>
+        <a href="tel:+85224017107" class="modal-button secondary">Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product Categories Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content product-modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-header">
+      <h2 class="modal-title" id="productModalTitle"></h2>
+    </div>
+    <div class="modal-body">
+      <div class="product-categories-grid" id="productCategoriesGrid"></div>
       <div class="modal-actions">
         <a href="mailto:sales@megaeternity.com" class="modal-button">Request Quote</a>
         <a href="tel:+85224017107" class="modal-button secondary">Call Now</a>

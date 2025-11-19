@@ -66,10 +66,10 @@ function updateActiveNav() {
   const sectionToNavMap = {
     0: -1,  // Hero - no nav link
     1: 0,   // About (includes Mission/Vision)
-    2: 1,   // Services
+    2: 1,   // Services/Product
     3: 2,   // Workshop China
-    4: 2,   // Workshop HK (same link)
-    5: 3,   // Innovation (sixth class)
+    4: 3,   // Workshop HK (separate link)
+    5: -2,  // Innovation (sixth class) - submenu item, handled separately
     6: -2,  // Our Clients (tenth class) - submenu item, handled separately
     7: 5,   // Working Days (eighth class)
     8: -2   // Contact (seventh class) - submenu item, handled separately
@@ -158,35 +158,25 @@ document.querySelectorAll('header nav a').forEach((link) => {
       return;
     }
     
-    // Get all navigation links (excluding submenu links for counting)
-    const allNavLinks = Array.from(document.querySelectorAll('header nav > a, header nav .nav-item > a'));
-    const navIndex = allNavLinks.indexOf(link);
+    // Get href for href-based navigation (more reliable)
+    const href = link.getAttribute('href');
     
-    // Map nav links to sections
-    const navToSectionMap = {
-      0: 1,  // About -> Section 1 (includes Mission/Vision)
-      1: 2,  // Services -> Section 2
-      2: 3,  // Workshops -> Section 3 (China workshop)
-      3: 5,  // Innovation -> Section 5
-      4: 7,  // China Factory -> Modal (handled separately above)
-      5: 7,  // Working Days -> Section 7
-      6: 8   // Contact -> Section 8
+    // Map hrefs to sections (check this first for specific links)
+    const hrefToSectionMap = {
+      '#workshop-china': 3,   // Workshop in China -> Section 3 (fourth class)
+      '#workshop-hongkong': 4, // Workshop in Hong Kong -> Section 4 (fifth class)
+      '#about': 1,            // About -> Section 1 (second class)
+      '#services': 2,         // Product -> Section 2 (third class)
+      '#innovation': 5,       // Innovation -> Section 5 (sixth class)
+      '#working-days': 7,     // Working Days -> Section 7 (eighth class)
+      '#clients': 6,          // We are using -> Section 6 (tenth class)
+      '#contact': 8           // Contact -> Section 8 (seventh class)
     };
     
     // Check if it's a submenu link
     const isSubmenuLink = link.closest('.submenu');
     if (isSubmenuLink) {
-      // Handle submenu navigation
-      const href = link.getAttribute('href');
-      
-      // Map submenu links to sections
-      const submenuLinkMap = {
-        '#clients': 6,      // Our Clients -> Section 6 (tenth class)
-        '#innovation': 5,  // Innovation -> Section 5 (sixth class)
-        '#contact': 8      // Contact -> Section 8 (seventh class)
-      };
-      
-      const targetSection = submenuLinkMap[href];
+      const targetSection = hrefToSectionMap[href];
       if (targetSection !== undefined && !animating) {
         const direction = targetSection > currentIndex ? 1 : -1;
         gotoSection(targetSection, direction);
@@ -194,7 +184,27 @@ document.querySelectorAll('header nav a').forEach((link) => {
       }
     }
     
-    const targetSection = navToSectionMap[navIndex];
+    // Try href-based mapping first
+    let targetSection = hrefToSectionMap[href];
+    
+    // Fall back to index-based mapping if href not found
+    if (targetSection === undefined) {
+      const allNavLinks = Array.from(document.querySelectorAll('header nav > a, header nav .nav-item > a'));
+      const navIndex = allNavLinks.indexOf(link);
+      
+      // Map nav links to sections (fallback for links without href mapping)
+      const navToSectionMap = {
+        0: 1,  // About -> Section 1
+        1: 2,  // Product -> Section 2
+        2: 3,  // Workshop in China -> Section 3
+        3: 4,  // Workshop in Hong Kong -> Section 4
+        4: 7,  // China Factory -> Modal (handled separately above)
+        5: 7   // Working Days -> Section 7
+      };
+      
+      targetSection = navToSectionMap[navIndex];
+    }
+    
     if (targetSection !== undefined && !animating) {
       const direction = targetSection > currentIndex ? 1 : -1;
       gotoSection(targetSection, direction);
@@ -887,4 +897,466 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 250);
     });
   });
+});
+
+// Product Categories Modal
+const productData = {
+  'crown-bridge': {
+    title: 'Crowns & Bridges',
+    categories: [
+      {
+        name: 'Full Zircon',
+        images: [
+          'images/Product/crown & bridge/full zircon/full zir crown1.JPG',
+          'images/Product/crown & bridge/full zircon/full zir crown1..JPG',
+          'images/Product/crown & bridge/full zircon/full zir crown1 (2).JPG',
+          'images/Product/crown & bridge/full zircon/full zir bridge1.JPG',
+          'images/Product/crown & bridge/full zircon/full zir bridge1..JPG',
+          'images/Product/crown & bridge/full zircon/full zir bridge2.JPG',
+          'images/Product/crown & bridge/full zircon/full zir bridge2..JPG',
+          'images/Product/crown & bridge/full zircon/full zir bridge3.JPG',
+          'images/Product/crown & bridge/full zircon/full zir bridge3..JPG',
+          'images/Product/crown & bridge/full zircon/full zir bridge4.JPG',
+          'images/Product/crown & bridge/full zircon/full zir bridge4..JPG'
+        ]
+      },
+      {
+        name: 'Ceramic',
+        images: [
+          'images/Product/crown & bridge/ceramic_/ceramic crown1.JPG',
+          'images/Product/crown & bridge/ceramic_/ceramic bridge1.JPG',
+          'images/Product/crown & bridge/ceramic_/ceramic bridge1..JPG',
+          'images/Product/crown & bridge/ceramic_/ceramic bridge2.JPG',
+          'images/Product/crown & bridge/ceramic_/ceramic bridge2..JPG',
+          'images/Product/crown & bridge/ceramic_/ceramic bridge3.JPG',
+          'images/Product/crown & bridge/ceramic_/ceramic bridge3..JPG',
+          'images/Product/crown & bridge/ceramic_/ceramic bridge4.JPG',
+          'images/Product/crown & bridge/ceramic_/ceramic bridge4..JPG'
+        ]
+      },
+      {
+        name: 'Metal Ceramic',
+        images: [
+          'images/Product/crown & bridge/metal ceramic/metal ceramic bridge.JPG',
+          'images/Product/crown & bridge/metal ceramic/metal ceramic bridge1.JPG',
+          'images/Product/crown & bridge/metal ceramic/metal ceramic bridge1..JPG',
+          'images/Product/crown & bridge/metal ceramic/metal cermic crown1.JPG',
+          'images/Product/crown & bridge/metal ceramic/metal cermic crown1..JPG'
+        ]
+      },
+      {
+        name: 'Metal',
+        images: [
+          'images/Product/crown & bridge/metal/metal crown.JPG'
+        ]
+      },
+      {
+        name: 'Veneers',
+        images: [
+          'images/Product/crown & bridge/veneers/veneers1.JPG',
+          'images/Product/crown & bridge/veneers/veneers1..JPG',
+          'images/Product/crown & bridge/veneers/veneers1...JPG',
+          'images/Product/crown & bridge/veneers/veneers1....JPG',
+          'images/Product/crown & bridge/veneers/veneers1.....JPG',
+          'images/Product/crown & bridge/veneers/veneers1......JPG'
+        ]
+      },
+      {
+        name: '3 to 3 Crown',
+        images: [
+          'images/Product/crown & bridge/3to3 crown1.JPG',
+          'images/Product/crown & bridge/3to3 crown1..JPG',
+          'images/Product/crown & bridge/3to3 crown1...JPG',
+          'images/Product/crown & bridge/3to3 crown1....JPG',
+          'images/Product/crown & bridge/3to3 crown1.....JPG',
+          'images/Product/crown & bridge/3to3 crown1......JPG'
+        ]
+      },
+      {
+        name: 'Implant Denture All on 4',
+        images: [
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4193.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4194.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4195.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4196.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4197.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4198.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4199.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4200.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4201.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4202.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4203.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4219.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4220.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4221.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4222.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4223.JPG',
+          'images/Product/crown & bridge/implant denture all on 4/IMG_4224.JPG'
+        ]
+      }
+    ]
+  },
+  'implant': {
+    title: 'Implants',
+    categories: [
+      {
+        name: 'Full Zircon',
+        images: [
+          'images/Product/implant/full zir implant1.JPG',
+          'images/Product/implant/full zir implant1..JPG'
+        ]
+      },
+      {
+        name: 'Ceramic',
+        images: [
+          'images/Product/implant/ceramic implant1.JPG',
+          'images/Product/implant/ceramic implant1..JPG'
+        ]
+      },
+      {
+        name: 'Metal Ceramic',
+        images: [
+          'images/Product/implant/metal ceramic implant.JPG',
+          'images/Product/implant/metal ceramic implant1.JPG',
+          'images/Product/implant/metal ceramic implant1..JPG'
+        ]
+      }
+    ]
+  },
+  'denture': {
+    title: 'Dentures',
+    categories: [
+      {
+        name: 'Full Denture',
+        images: [
+          'images/Product/denture/full denture/BPS Denture.JPG',
+          'images/Product/denture/full denture/BPS Denture1.JPG',
+          'images/Product/denture/full denture/BPS Denture2.JPG'
+        ]
+      },
+      {
+        name: 'Partial Denture',
+        images: [
+          'images/Product/denture/partial  denture/partial denture.JPG',
+          'images/Product/denture/partial  denture/partial denture1.JPG',
+          'images/Product/denture/partial  denture/flexible denture1.JPG',
+          'images/Product/denture/partial  denture/flexible denture1..JPG',
+          'images/Product/denture/partial  denture/flexible denture2.JPG',
+          'images/Product/denture/partial  denture/flexible denture2..JPG'
+        ]
+      },
+      {
+        name: 'Over Denture',
+        images: [
+          'images/Product/denture/over denture/hader bar1.JPG',
+          'images/Product/denture/over denture/hader bar1..JPG',
+          'images/Product/denture/over denture/hader bar1...JPG'
+        ]
+      }
+    ]
+  },
+  'orthodontic': {
+    title: 'Orthodontics & Esthetics',
+    categories: [
+      {
+        name: 'Orthodontic Products',
+        images: [
+          'images/Product/orthodotic/IMG_20250911_103754.jpg',
+          'images/Product/orthodotic/IMG_20250911_103817.jpg',
+          'images/Product/orthodotic/IMG_20250911_103832.jpg',
+          'images/Product/orthodotic/IMG_4285.JPG',
+          'images/Product/orthodotic/IMG_4288.JPG',
+          'images/Product/orthodotic/IMG_4290.JPG',
+          'images/Product/orthodotic/IMG_4291.JPG',
+          'images/Product/orthodotic/IMG_4292.JPG',
+          'images/Product/orthodotic/IMG_4296.JPG',
+          'images/Product/orthodotic/IMG_4297.JPG',
+          'images/Product/orthodotic/IMG_4298.JPG',
+          'images/Product/orthodotic/IMG_4300.JPG',
+          'images/Product/orthodotic/IMG_4301.JPG',
+          'images/Product/orthodotic/IMG_4302.JPG',
+          'images/Product/orthodotic/IMG_4304.JPG'
+        ]
+      }
+    ]
+  }
+};
+
+function openProductModal(productKey) {
+  const product = productData[productKey];
+  if (!product) return;
+
+  const modal = document.getElementById('productModal');
+  const title = document.getElementById('productModalTitle');
+  const grid = document.getElementById('productCategoriesGrid');
+
+  title.textContent = product.title;
+  grid.innerHTML = '';
+
+  product.categories.forEach(category => {
+    const categoryCard = document.createElement('div');
+    categoryCard.className = 'product-category-card';
+
+    const header = document.createElement('div');
+    header.className = 'product-category-header';
+    const categoryTitle = document.createElement('h3');
+    categoryTitle.className = 'product-category-title';
+    categoryTitle.textContent = category.name;
+    header.appendChild(categoryTitle);
+
+    const imagesContainer = document.createElement('div');
+    imagesContainer.className = 'product-category-images';
+
+    // Show all images from the category
+    category.images.forEach(imagePath => {
+      const imageWrapper = document.createElement('div');
+      imageWrapper.className = 'product-category-image';
+      const img = document.createElement('img');
+      img.src = imagePath;
+      img.alt = category.name;
+      img.loading = 'lazy';
+      imageWrapper.appendChild(img);
+      imagesContainer.appendChild(imageWrapper);
+    });
+
+    categoryCard.appendChild(header);
+    categoryCard.appendChild(imagesContainer);
+    grid.appendChild(categoryCard);
+  });
+
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+  const modal = document.getElementById('productModal');
+  modal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// Initialize product modal
+document.addEventListener('DOMContentLoaded', function() {
+  // Product card click handlers
+  document.querySelectorAll('.product-card[data-product]').forEach(card => {
+    card.addEventListener('click', function() {
+      const productKey = this.getAttribute('data-product');
+      openProductModal(productKey);
+    });
+  });
+
+  // Modal close handlers
+  const productModal = document.getElementById('productModal');
+  if (productModal) {
+    const closeBtn = productModal.querySelector('.modal-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeProductModal);
+    }
+
+    // Close on background click
+    productModal.addEventListener('click', function(e) {
+      if (e.target === productModal) {
+        closeProductModal();
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && productModal.classList.contains('show')) {
+        closeProductModal();
+      }
+    });
+  }
+});
+
+// STL File Upload Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const uploadForm = document.getElementById('stlUploadForm');
+  const fileInput = document.getElementById('stlFileInput');
+  const uploadArea = document.getElementById('uploadArea');
+  const uploadedFilesContainer = document.getElementById('uploadedFiles');
+  const submitBtn = document.getElementById('submitUploadBtn');
+  const clearBtn = document.getElementById('clearUploadBtn');
+  
+  let selectedFiles = [];
+
+  // Format file size
+  function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+  }
+
+  // Validate file type
+  function isValidSTLFile(file) {
+    return file.name.toLowerCase().endsWith('.stl');
+  }
+
+  // Add files to list
+  function addFiles(files) {
+    Array.from(files).forEach(file => {
+      if (!isValidSTLFile(file)) {
+        alert(`File "${file.name}" is not a valid .STL file. Please select only .STL files.`);
+        return;
+      }
+
+      // Check if file already exists
+      if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+        return;
+      }
+
+      selectedFiles.push(file);
+    });
+
+    updateFileList();
+    updateButtons();
+  }
+
+  // Update file list display
+  function updateFileList() {
+    uploadedFilesContainer.innerHTML = '';
+
+    if (selectedFiles.length === 0) {
+      uploadedFilesContainer.classList.remove('has-files');
+      return;
+    }
+
+    uploadedFilesContainer.classList.add('has-files');
+
+    selectedFiles.forEach((file, index) => {
+      const fileItem = document.createElement('div');
+      fileItem.className = 'file-item';
+      
+      fileItem.innerHTML = `
+        <div class="file-info">
+          <div class="file-icon">📄</div>
+          <div class="file-details">
+            <p class="file-name">${file.name}</p>
+            <p class="file-size">${formatFileSize(file.size)}</p>
+          </div>
+        </div>
+        <button type="button" class="file-remove" data-index="${index}">Remove</button>
+      `;
+
+      // Remove file handler
+      const removeBtn = fileItem.querySelector('.file-remove');
+      removeBtn.addEventListener('click', () => {
+        selectedFiles.splice(index, 1);
+        updateFileList();
+        updateButtons();
+      });
+
+      uploadedFilesContainer.appendChild(fileItem);
+    });
+  }
+
+  // Update button states
+  function updateButtons() {
+    if (selectedFiles.length > 0) {
+      submitBtn.disabled = false;
+      clearBtn.style.display = 'block';
+    } else {
+      submitBtn.disabled = true;
+      clearBtn.style.display = 'none';
+    }
+  }
+
+  // Drag and drop handlers
+  uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.classList.add('drag-over');
+  });
+
+  uploadArea.addEventListener('dragleave', () => {
+    uploadArea.classList.remove('drag-over');
+  });
+
+  uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('drag-over');
+    
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      addFiles(files);
+    }
+  });
+
+  // Click to upload
+  uploadArea.addEventListener('click', () => {
+    fileInput.click();
+  });
+
+  // File input change
+  fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+      addFiles(e.target.files);
+    }
+  });
+
+  // Clear all files
+  clearBtn.addEventListener('click', () => {
+    selectedFiles = [];
+    fileInput.value = '';
+    updateFileList();
+    updateButtons();
+  });
+
+  // Form submission
+  uploadForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (selectedFiles.length === 0) {
+      alert('Please select at least one .STL file to upload.');
+      return;
+    }
+
+    // Create FormData
+    const formData = new FormData();
+    selectedFiles.forEach((file, index) => {
+      formData.append(`stlFile_${index}`, file);
+    });
+
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Uploading...';
+
+    // Here you would typically send to a server
+    // For now, we'll simulate an upload and show a message
+    setTimeout(() => {
+      alert(`Successfully uploaded ${selectedFiles.length} file(s)!\n\nNote: This is a demo. In production, files would be sent to your server.`);
+      
+      // Reset form
+      selectedFiles = [];
+      fileInput.value = '';
+      updateFileList();
+      updateButtons();
+      submitBtn.textContent = 'Submit Files';
+    }, 1500);
+
+    // Example server upload (uncomment and configure when ready):
+    /*
+    fetch('/api/upload-stl', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('Files uploaded successfully!');
+      selectedFiles = [];
+      fileInput.value = '';
+      updateFileList();
+      updateButtons();
+      submitBtn.textContent = 'Submit Files';
+    })
+    .catch(error => {
+      alert('Error uploading files. Please try again.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Files';
+    });
+    */
+  });
+
+  // Initialize
+  updateButtons();
 });
