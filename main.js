@@ -57,11 +57,12 @@ function updateActiveNav() {
   // Map sections to nav links: 
   // Section 0 (Hero) = no link
   // Section 1 (About - includes Mission/Vision) = link 0
-  // Section 2 (Services) = link 1
-  // Section 3 & 4 (Workshops) = link 2
-  // Section 5 (Innovation) = link 3
-  // Section 6 (Working Days) = link 4
-  // Section 7 (Contact) = link 5
+  // Section 2 (Product) = link 1 (has submenu)
+  // Section 3 & 4 (Workshops) = link 2 & 3
+  // Section 5 (Innovation) = submenu item under About
+  // Section 6 (Working Days) = link 5
+  // Section 7 (We are using) = link 6
+  // Section 8 (Contact) = submenu item under About
   
   const sectionToNavMap = {
     0: -1,  // Hero - no nav link
@@ -70,8 +71,8 @@ function updateActiveNav() {
     3: 2,   // Workshop China
     4: 3,   // Workshop HK (separate link)
     5: -2,  // Innovation (sixth class) - submenu item, handled separately
-    6: -2,  // Our Clients (tenth class) - submenu item, handled separately
-    7: 5,   // Working Days (eighth class)
+    6: 5,   // Working Days (eighth class)
+    7: 6,   // Our Clients (tenth class) - main nav item
     8: -2   // Contact (seventh class) - submenu item, handled separately
   };
   
@@ -93,15 +94,12 @@ function updateActiveNav() {
   
   // Handle submenu active states
   const aboutLink = document.querySelector('header nav .nav-item.has-submenu > a[href="#about"]');
+  const productLink = document.querySelector('header nav .nav-item.has-submenu > a[href="#services"]');
   
-  if (currentIndex === 6) {
-    // Our Clients section (tenth class, index 6)
-    const clientsLink = document.querySelector('header nav .submenu a[href="#clients"]');
-    if (clientsLink) {
-      clientsLink.classList.add('active');
-    }
-    if (aboutLink) {
-      aboutLink.classList.add('active');
+  if (currentIndex === 2) {
+    // Product section (third class, index 2)
+    if (productLink) {
+      productLink.classList.add('active');
     }
   } else if (currentIndex === 5) {
     // Innovation section (sixth class, index 5)
@@ -168,10 +166,29 @@ document.querySelectorAll('header nav a').forEach((link) => {
       '#about': 1,            // About -> Section 1 (second class)
       '#services': 2,         // Product -> Section 2 (third class)
       '#innovation': 5,       // Innovation -> Section 5 (sixth class)
-      '#working-days': 7,     // Working Days -> Section 7 (eighth class)
-      '#clients': 6,          // We are using -> Section 6 (tenth class)
+      '#working-days': 6,     // Working Days -> Section 6 (eighth class)
+      '#clients': 7,          // We are using -> Section 7 (tenth class)
       '#contact': 8           // Contact -> Section 8 (seventh class)
     };
+    
+    // Check if it's a product submenu link
+    const isProductSubmenuLink = link.closest('.submenu') && href && href.startsWith('#product-');
+    if (isProductSubmenuLink) {
+      // Extract product key from href (e.g., #product-crown-bridge -> crown-bridge)
+      const productKey = href.replace('#product-', '');
+      // Navigate to Product section (section 2)
+      if (!animating) {
+        const direction = 2 > currentIndex ? 1 : -1;
+        gotoSection(2, direction);
+        // Open product modal after navigation
+        setTimeout(() => {
+          if (typeof openProductModal === 'function') {
+            openProductModal(productKey);
+          }
+        }, 1300); // Wait for animation to complete
+      }
+      return;
+    }
     
     // Check if it's a submenu link
     const isSubmenuLink = link.closest('.submenu');
