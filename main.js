@@ -58,22 +58,20 @@ function updateActiveNav() {
   // Section 0 (Hero) = no link
   // Section 1 (About - includes Mission/Vision) = link 0
   // Section 2 (Product) = link 1 (has submenu)
-  // Section 3 & 4 (Workshops) = link 2 & 3
+  // Section 3 & 4 (Workshops) = link 2 (has submenu)
   // Section 5 (Innovation) = submenu item under About
-  // Section 6 (Working Days) = link 5
-  // Section 7 (We are using) = link 6
-  // Section 8 (Contact) = submenu item under About
+  // Section 6 (We are using) = link 4
+  // Section 7 (Contact) = submenu item under About
   
   const sectionToNavMap = {
     0: -1,  // Hero - no nav link
     1: 0,   // About (includes Mission/Vision)
     2: 1,   // Services/Product
-    3: 2,   // Workshop China
-    4: 3,   // Workshop HK (separate link)
+    3: 2,   // Workshop China - submenu item under Workshop
+    4: 2,   // Workshop HK - submenu item under Workshop
     5: -2,  // Innovation (sixth class) - submenu item, handled separately
-    6: 5,   // Working Days (eighth class)
-    7: 6,   // Our Clients (tenth class) - main nav item
-    8: -2   // Contact (seventh class) - submenu item, handled separately
+    6: 4,   // Our Clients (tenth class) - main nav item
+    7: -2   // Contact (seventh class) - submenu item, handled separately
   };
   
   navLinks.forEach((link, index) => {
@@ -95,11 +93,29 @@ function updateActiveNav() {
   // Handle submenu active states
   const aboutLink = document.querySelector('header nav .nav-item.has-submenu > a[href="#about"]');
   const productLink = document.querySelector('header nav .nav-item.has-submenu > a[href="#services"]');
+  const workshopLink = document.querySelector('header nav .nav-item.has-submenu > a[href="#workshop-china"]');
   
   if (currentIndex === 2) {
     // Product section (third class, index 2)
     if (productLink) {
       productLink.classList.add('active');
+    }
+  } else if (currentIndex === 3 || currentIndex === 4) {
+    // Workshop sections (fourth/fifth class, index 3/4)
+    if (workshopLink) {
+      workshopLink.classList.add('active');
+    }
+    // Highlight the specific submenu item
+    if (currentIndex === 3) {
+      const chinaLink = document.querySelector('header nav .submenu a[href="#workshop-china"]');
+      if (chinaLink) {
+        chinaLink.classList.add('active');
+      }
+    } else if (currentIndex === 4) {
+      const hkLink = document.querySelector('header nav .submenu a[href="#workshop-hongkong"]');
+      if (hkLink) {
+        hkLink.classList.add('active');
+      }
     }
   } else if (currentIndex === 5) {
     // Innovation section (sixth class, index 5)
@@ -110,8 +126,8 @@ function updateActiveNav() {
     if (aboutLink) {
       aboutLink.classList.add('active');
     }
-  } else if (currentIndex === 8) {
-    // Contact section (seventh class, index 8)
+  } else if (currentIndex === 7) {
+    // Contact section (seventh class, index 7)
     const contactLink = document.querySelector('header nav .submenu a[href="#contact"]');
     if (contactLink) {
       contactLink.classList.add('active');
@@ -136,26 +152,6 @@ document.querySelectorAll('header nav a').forEach((link) => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     
-    // Handle China Factory modal link separately
-    if (link.classList.contains('china-factory-link')) {
-      const modal = document.getElementById('chinaFactoryModal');
-      if (modal) {
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-        // Initialize slider when modal opens
-        setTimeout(() => {
-          const slider = modal.querySelector('.factory-images-slider');
-          if (slider && !slider.dataset.initialized) {
-            // Trigger initialization via event
-            const initEvent = new Event('initSlider');
-            slider.dispatchEvent(initEvent);
-            slider.dataset.initialized = 'true';
-          }
-        }, 100);
-      }
-      return;
-    }
-    
     // Get href for href-based navigation (more reliable)
     const href = link.getAttribute('href');
     
@@ -166,9 +162,8 @@ document.querySelectorAll('header nav a').forEach((link) => {
       '#about': 1,            // About -> Section 1 (second class)
       '#services': 2,         // Product -> Section 2 (third class)
       '#innovation': 5,       // Innovation -> Section 5 (sixth class)
-      '#working-days': 6,     // Working Days -> Section 6 (eighth class)
-      '#clients': 7,          // We are using -> Section 7 (tenth class)
-      '#contact': 8           // Contact -> Section 8 (seventh class)
+      '#clients': 6,          // We are using -> Section 6 (tenth class)
+      '#contact': 7           // Contact -> Section 7 (seventh class)
     };
     
     // Check if it's a product submenu link
@@ -213,10 +208,8 @@ document.querySelectorAll('header nav a').forEach((link) => {
       const navToSectionMap = {
         0: 1,  // About -> Section 1
         1: 2,  // Product -> Section 2
-        2: 3,  // Workshop in China -> Section 3
-        3: 4,  // Workshop in Hong Kong -> Section 4
-        4: 7,  // China Factory -> Modal (handled separately above)
-        5: 7   // Working Days -> Section 7
+        2: 3,  // Workshop -> Section 3 (Workshop in China)
+        3: 6   // We are using -> Section 6
       };
       
       targetSection = navToSectionMap[navIndex];
@@ -506,287 +499,6 @@ if (document.readyState === 'loading') {
 } else {
   initAllWorkshopSliders();
 }
-
-// Working Days Data
-const workingDaysData = {
-  'Casting Denture': [
-    { service: 'Framework', days: 6 },
-    { service: 'Framework + Wax rim', days: 7 },
-    { service: 'Framework + set teeth', days: 7 },
-    { service: 'Framework + set teeth + finish', days: 7 },
-    { service: 'Set teeth + Finish', days: 6 },
-    { service: 'Acrylic process (finish)', days: 6 }
-  ],
-  'Fixed Restoration': [
-    { service: 'CMC/CMB', days: 6 },
-    { service: 'Full ceramic', days: 6 },
-    { service: 'Implant', days: 8 }
-  ],
-  'Acrylic Denture': [
-    { service: 'Set teeth', days: 6 },
-    { service: 'Set teeth + finish', days: 6 },
-    { service: 'Acrylic process (finish)', days: 6 }
-  ],
-  'Other': [
-    { service: 'Tray', days: 5 },
-    { service: 'Bite rim', days: 5 },
-    { service: 'Tray + Bite rim', days: 6 },
-    { service: 'Retainer', days: 6 }
-  ]
-};
-
-// Working Days Modal Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('workingDaysModal');
-  const closeBtn = modal.querySelector('.modal-close');
-  const categoryCards = document.querySelectorAll('.working-days-category');
-  const servicesList = modal.querySelector('.modal-services-list');
-
-  // Open modal when clicking on a category card
-  categoryCards.forEach(card => {
-    card.addEventListener('click', function() {
-      const category = this.getAttribute('data-category');
-      const services = workingDaysData[category];
-
-      if (!services) return;
-
-      // Populate modal title and category
-      modal.querySelector('.modal-title').textContent = category;
-      modal.querySelector('.modal-category').textContent = 'Service Details';
-
-      // Clear and populate services list
-      servicesList.innerHTML = '';
-      services.forEach(item => {
-        const serviceItem = document.createElement('div');
-        serviceItem.className = 'modal-service-item';
-        serviceItem.innerHTML = `
-          <span class="modal-service-name">${item.service}</span>
-          <span class="modal-service-days">${item.days} Days</span>
-        `;
-        servicesList.appendChild(serviceItem);
-      });
-
-      // Show modal
-      modal.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  // Close modal when clicking close button
-  closeBtn.addEventListener('click', function() {
-    modal.classList.remove('show');
-    document.body.style.overflow = '';
-  });
-
-  // Close modal when clicking outside the modal content
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // ESC key handler is handled globally below
-});
-
-// China Factory Modal Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('chinaFactoryModal');
-  if (!modal) return;
-  
-  const closeBtn = modal.querySelector('.modal-close');
-  const slider = modal.querySelector('.factory-images-slider');
-  
-  // Initialize slider when modal opens
-  let sliderInitialized = false;
-  
-  function initChinaFactorySlider() {
-    if (!slider || sliderInitialized) return;
-    
-    const track = slider.querySelector('.slider-track');
-    const slides = slider.querySelectorAll('.slide');
-    const prevBtn = slider.querySelector('.slider-nav.prev');
-    const nextBtn = slider.querySelector('.slider-nav.next');
-    const dotsContainer = slider.querySelector('.slider-dots');
-    
-    if (!track || slides.length === 0) return;
-    
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    function getSlidesPerView() {
-      if (window.innerWidth >= 1024) return 3;
-      if (window.innerWidth >= 768) return 2;
-      return 1;
-    }
-
-    // Create dots
-    function createDots() {
-      dotsContainer.innerHTML = '';
-      const totalViews = Math.ceil(totalSlides / getSlidesPerView());
-      for (let i = 0; i < totalViews; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'slider-dot';
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i * getSlidesPerView()));
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    const dots = () => dotsContainer.querySelectorAll('.slider-dot');
-
-    function updateSlider() {
-      const slidesPerView = getSlidesPerView();
-      const translateX = -(currentSlide * (100 / slidesPerView));
-      track.style.transform = `translateX(${translateX}%)`;
-      
-      // Update dots
-      const currentView = Math.floor(currentSlide / slidesPerView);
-      dots().forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentView);
-      });
-
-      // Update button states
-      const maxSlide = totalSlides - slidesPerView;
-      prevBtn.disabled = currentSlide === 0;
-      nextBtn.disabled = currentSlide >= maxSlide;
-    }
-
-    function goToSlide(index) {
-      const slidesPerView = getSlidesPerView();
-      const maxSlide = totalSlides - slidesPerView;
-      currentSlide = Math.max(0, Math.min(index, maxSlide));
-      updateSlider();
-    }
-
-    function nextSlide() {
-      const slidesPerView = getSlidesPerView();
-      const maxSlide = totalSlides - slidesPerView;
-      if (currentSlide < maxSlide) {
-        currentSlide += slidesPerView;
-        updateSlider();
-      }
-    }
-
-    function prevSlide() {
-      const slidesPerView = getSlidesPerView();
-      if (currentSlide > 0) {
-        currentSlide = Math.max(0, currentSlide - slidesPerView);
-        updateSlider();
-      }
-    }
-
-    // Create dots on initialization
-    createDots();
-
-    // Event listeners
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-
-    // Touch/swipe support
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-
-    track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-    });
-
-    track.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      currentX = e.touches[0].clientX;
-    });
-
-    track.addEventListener('touchend', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      const diffX = startX - currentX;
-      if (Math.abs(diffX) > 50) {
-        if (diffX > 0) {
-          nextSlide();
-        } else {
-          prevSlide();
-        }
-      }
-    });
-
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        createDots();
-        const slidesPerView = getSlidesPerView();
-        const maxSlide = totalSlides - slidesPerView;
-        currentSlide = Math.min(currentSlide, maxSlide);
-        updateSlider();
-      }, 250);
-    });
-
-    // Initialize
-    updateSlider();
-    sliderInitialized = true;
-  }
-
-  // Initialize slider when modal opens
-  slider.addEventListener('initSlider', initChinaFactorySlider);
-  
-  const modalObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        if (modal.classList.contains('show')) {
-          setTimeout(() => {
-            if (!sliderInitialized) {
-              slider.dispatchEvent(new Event('initSlider'));
-            }
-          }, 100);
-        }
-      }
-    });
-  });
-  modalObserver.observe(modal, { attributes: true });
-
-  // Also try to initialize immediately if modal is already visible
-  if (modal.classList.contains('show')) {
-    setTimeout(() => {
-      if (!sliderInitialized) {
-        slider.dispatchEvent(new Event('initSlider'));
-      }
-    }, 100);
-  }
-
-  // Close modal when clicking close button
-  closeBtn.addEventListener('click', function() {
-    modal.classList.remove('show');
-    document.body.style.overflow = '';
-  });
-
-  // Close modal when clicking outside the modal content
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-  });
-});
-
-// Shared ESC key handler for all modals
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    const chinaFactoryModal = document.getElementById('chinaFactoryModal');
-    const workingDaysModal = document.getElementById('workingDaysModal');
-    
-    if (chinaFactoryModal && chinaFactoryModal.classList.contains('show')) {
-      chinaFactoryModal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-    if (workingDaysModal && workingDaysModal.classList.contains('show')) {
-      workingDaysModal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-  }
-});
 
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
@@ -1180,6 +892,193 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && productModal.classList.contains('show')) {
         closeProductModal();
+      }
+    });
+  }
+});
+
+// China Factory Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('chinaFactoryModal');
+  const openBtn = document.getElementById('openChinaFactoryModal');
+  const slider = modal ? modal.querySelector('.factory-images-slider') : null;
+  
+  // Initialize slider when modal opens
+  let sliderInitialized = false;
+  
+  function initChinaFactorySlider() {
+    if (!slider || sliderInitialized) return;
+    
+    const track = slider.querySelector('.slider-track');
+    const slides = slider.querySelectorAll('.slide');
+    const prevBtn = slider.querySelector('.slider-nav.prev');
+    const nextBtn = slider.querySelector('.slider-nav.next');
+    const dotsContainer = slider.querySelector('.slider-dots');
+    
+    if (!track || slides.length === 0) return;
+    
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function getSlidesPerView() {
+      if (window.innerWidth >= 1024) return 3;
+      if (window.innerWidth >= 768) return 2;
+      return 1;
+    }
+
+    // Create dots
+    function createDots() {
+      dotsContainer.innerHTML = '';
+      const totalViews = Math.ceil(totalSlides / getSlidesPerView());
+      for (let i = 0; i < totalViews; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'slider-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i * getSlidesPerView()));
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    const dots = () => dotsContainer.querySelectorAll('.slider-dot');
+
+    function updateSlider() {
+      const slidesPerView = getSlidesPerView();
+      const translateX = -(currentSlide * (100 / slidesPerView));
+      track.style.transform = `translateX(${translateX}%)`;
+      
+      // Update dots
+      const currentView = Math.floor(currentSlide / slidesPerView);
+      dots().forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentView);
+      });
+
+      // Update button states
+      const maxSlide = totalSlides - slidesPerView;
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide >= maxSlide;
+    }
+
+    function goToSlide(index) {
+      const slidesPerView = getSlidesPerView();
+      const maxSlide = totalSlides - slidesPerView;
+      currentSlide = Math.max(0, Math.min(index, maxSlide));
+      updateSlider();
+    }
+
+    function nextSlide() {
+      const slidesPerView = getSlidesPerView();
+      const maxSlide = totalSlides - slidesPerView;
+      if (currentSlide < maxSlide) {
+        currentSlide += slidesPerView;
+        updateSlider();
+      }
+    }
+
+    function prevSlide() {
+      const slidesPerView = getSlidesPerView();
+      if (currentSlide > 0) {
+        currentSlide = Math.max(0, currentSlide - slidesPerView);
+        updateSlider();
+      }
+    }
+
+    // Create dots on initialization
+    createDots();
+
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // Touch/swipe support
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+
+    track.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      currentX = e.touches[0].clientX;
+    });
+
+    track.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      const diffX = startX - currentX;
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    });
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        createDots();
+        const slidesPerView = getSlidesPerView();
+        const maxSlide = totalSlides - slidesPerView;
+        currentSlide = Math.min(currentSlide, maxSlide);
+        updateSlider();
+      }, 250);
+    });
+
+    // Initialize
+    updateSlider();
+    sliderInitialized = true;
+  }
+
+  function openChinaFactoryModal() {
+    if (!modal) return;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    // Initialize slider when modal opens
+    setTimeout(() => {
+      if (!sliderInitialized) {
+        initChinaFactorySlider();
+      }
+    }, 100);
+  }
+
+  function closeChinaFactoryModal() {
+    if (!modal) return;
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  // Open modal button
+  if (openBtn) {
+    openBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openChinaFactoryModal();
+    });
+  }
+
+  // Close modal handlers
+  if (modal) {
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeChinaFactoryModal);
+    }
+
+    // Close on background click
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeChinaFactoryModal();
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('show')) {
+        closeChinaFactoryModal();
       }
     });
   }
