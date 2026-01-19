@@ -1276,3 +1276,31 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize
   updateButtons();
 });
+
+// Expandable summary functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const expandableSummaries = document.querySelectorAll('.expandable-summary');
+  
+  expandableSummaries.forEach((summary) => {
+    const expandToggle = summary.querySelector('.expand-toggle');
+    const summaryFull = summary.querySelector('.summary-full');
+    
+    if (expandToggle && summaryFull) {
+      expandToggle.addEventListener('click', () => {
+        const isExpanded = summaryFull.style.display !== 'none';
+        
+        if (isExpanded) {
+          // Collapse
+          summaryFull.style.display = 'none';
+          expandToggle.textContent = 'Read more';
+          expandToggle.setAttribute('aria-label', 'Expand to read more');
+        } else {
+          // Expand
+          summaryFull.style.display = 'inline';
+          expandToggle.textContent = 'Read less';
+          expandToggle.setAttribute('aria-label', 'Collapse to show less');
+        }
+      });
+    }
+  });
+});
